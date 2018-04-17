@@ -7,12 +7,12 @@
                 <div class="card card-default">
                     <div class="card-header">
                         Store title
-                        <a class="pull-left btn btn-sm" download href="{!! public_path('json/titles.json') !!}">Download</a>
+                        <a class="pull-left btn btn-sm" download href="{!! url('json/titles.json') !!}">Download</a>
                     </div>
 
                     <div class="card-body">
                         <form method="POST" action="{!! url('/titles') !!}">
-                            @csrf
+                            {!! csrf_field() !!}
 
                             <div class="form-group row">
                                 <label for="category_id" class="col-md-4 col-form-label text-md-right">Category</label>
