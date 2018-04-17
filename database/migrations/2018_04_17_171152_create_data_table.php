@@ -15,10 +15,10 @@ class CreateDataTable extends Migration
     {
         Schema::create('data', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('category_id')->unsigned()->nullable();
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->integer('section_id')->unsigned();
+            $table->foreign('section_id')->references('id')->on('sections');
             $table->string('key');
-            $table->string('value');
+            $table->string('karat_message');
             $table->timestamps();
         });
     }
