@@ -422,6 +422,7 @@ Route::get('/', function(){
     return view('welcome');
 });
 
+// comment
 Route::get('/categories',           'HomeController@showCategories');
 Route::post('/categories',          'HomeController@saveCategories');
 Route::delete('/categories/{id}',   'HomeController@deleteCategories');
