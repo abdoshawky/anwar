@@ -17,8 +17,8 @@ class CreateDataTable extends Migration
             $table->increments('id');
             $table->integer('section_id')->unsigned();
             $table->foreign('section_id')->references('id')->on('sections');
-            $table->string('key');
-            $table->string('karat_message');
+            $table->text('key');
+            $table->text('karat_message');
             $table->timestamps();
         });
     }
