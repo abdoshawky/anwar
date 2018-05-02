@@ -13,13 +13,13 @@ class CreateTitlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('titles', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('category_id')->unsigned();
-            $table->foreign('category_id')->references('id')->on('categories');
-            $table->string('name');
-            $table->timestamps();
-        });
+//        Schema::create('titles', function (Blueprint $table) {
+//            $table->increments('id');
+//            $table->integer('category_id')->unsigned();
+//            $table->foreign('category_id')->references('id')->on('categories');
+//            $table->string('name');
+//            $table->timestamps();
+//        });
     }
 
     /**
@@ -29,6 +29,6 @@ class CreateTitlesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('titles');
+//        Schema::dropIfExists('titles');
     }
 }
