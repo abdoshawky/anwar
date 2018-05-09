@@ -37,7 +37,7 @@
                                 <label for="key" class="col-md-4 col-form-label text-md-right">key</label>
 
                                 <div class="col-md-6">
-                                    <input id="key" type="text" class="form-control{{ $errors->has('key') ? ' is-invalid' : '' }}" name="key" value="{{ old('key') }}" required autofocus>
+                                    <input id="key" type="text" class="form-control{{ $errors->has('key') ? ' is-invalid' : '' }}" name="key" value="{{ old('key') }}" required autofocus autocomplete="off">
 
                                     @if ($errors->has('key'))
                                         <span class="invalid-feedback">
@@ -51,7 +51,7 @@
                                 <label for="karat_message" class="col-md-4 col-form-label text-md-right">Karat Message</label>
 
                                 <div class="col-md-6">
-                                    <input id="karat_message" type="text" class="form-control{{ $errors->has('karat_message') ? ' is-invalid' : '' }}" name="karat_message" value="{{ old('karat_message') }}" required>
+                                    <input id="karat_message" type="text" class="form-control{{ $errors->has('karat_message') ? ' is-invalid' : '' }}" name="karat_message" value="{{ old('karat_message') }}" required autocomplete="off">
 
                                     @if ($errors->has('karat_message'))
                                         <span class="invalid-feedback">
