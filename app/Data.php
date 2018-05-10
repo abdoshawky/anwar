@@ -9,6 +9,7 @@ class Data extends Model
     protected $table = 'data';
 
     protected $fillable = [
+        'id',
         'section_id',
         'key',
         'karat_message'

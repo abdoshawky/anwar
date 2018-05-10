@@ -14,3 +14,4 @@ use Illuminate\Http\Request;
 */
 
 Route::post('sections/shift', 'API\SectionsController@shiftSections');
+Route::post('data/sections/shift', 'API\SectionsController@shiftDataSections');

@@ -9,6 +9,7 @@ class Title extends Model
     protected $table = 'titles';
 
     protected $fillable = [
+        'id',
         'category_id',
         'name'
     ];

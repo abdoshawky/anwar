@@ -11,9 +11,9 @@ class DataSeeder extends Seeder
      */
     public function run()
     {
-        $data = json_decode(file_get_contents(public_path('/json/data.json')));
+        $data = json_decode(file_get_contents(public_path('seeds/data.json')));
         foreach ($data as $item){
-            \App\Data::create(['section_id'=>$item->section_id, 'key'=>$item->key,'karat_message' => $item->karatMessage]);
+            \App\Data::create(['id'=>$item->id, 'section_id'=>$item->section_id, 'key'=>$item->key,'karat_message' => $item->karatMessage]);
         }
     }
 }

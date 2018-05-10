@@ -11,11 +11,9 @@ class SectionsSeeder extends Seeder
      */
     public function run()
     {
-        $sections = json_decode(file_get_contents(public_path('/json/sections.json')));
+        $sections = json_decode(file_get_contents(public_path('seeds/sections.json')));
         foreach ($sections as $section){
-            if(\App\Section::where('name',$section->name)->count() == 0){
-                \App\Section::create(['id'=>$section->id, 'title_id'=>$section->title_id, 'name' => $section->name]);
-            }
+            \App\Section::create(['id'=>$section->id, 'title_id'=>$section->title_id, 'name' => $section->name]);
         }
     }
 }

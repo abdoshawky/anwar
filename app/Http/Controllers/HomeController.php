@@ -31,6 +31,21 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function test(){
+
+        // read the content of vws folder
+        $vws = scandir(public_path('vws'));
+        $data = Data::where('key','LIKE','%vws%')->pluck('karat_message');
+        $filteredData = [];
+        foreach ($data as $item){
+            $item = str_replace(['‘','’'],'',$item);
+            $item = str_replace(['(right)','(Right)','(Right engine, Gearbox)','(possible)'],'',$item);
+            $item = str_replace(['  '],' ',$item);
+            $filteredData[] = $item;
+        }
+        return $filteredData;
+    }
+
 
     public function showCategories(){
         $categories = \App\Category::all();
@@ -39,7 +54,7 @@ class HomeController extends Controller
         $file = fopen($path, "w");
         fwrite($file, $data);
 
-        $categories = Category::orderBy('created_at','desc')->get();
+        $categories = Category::orderBy('id','desc')->get();
         return view('categories', compact('categories'));
     }
 
@@ -69,7 +84,7 @@ class HomeController extends Controller
         $file = fopen($path, "w");
         fwrite($file, $data);
 
-        $titles = Title::with('category')->orderBy('created_at','desc')->get();
+        $titles = Title::with('category')->orderBy('id','desc')->get();
         return view('titles', compact('titles','categories'));
     }
 
@@ -98,8 +113,8 @@ class HomeController extends Controller
         $path = public_path("json/sections.json");
         $file = fopen($path, "w");
         fwrite($file, $data);
-        $titles = Title::orderBy('created_at','desc')->get();
-        $sections = Section::with('title.category')->orderBy('created_at','desc')->get();
+        $titles = Title::orderBy('id','desc')->get();
+        $sections = Section::with('title.category')->orderBy('id','desc')->get();
         return view('sections', compact('sections','titles'));
     }
 
@@ -152,8 +167,8 @@ class HomeController extends Controller
         $path = public_path("json/data.json");
         $file = fopen($path, "w");
         fwrite($file, $data);
-        $sections = Section::orderBy('created_at','desc')->get();
-        $data = Data::with('section.title.category')->orderBy('created_at','desc')->get();
+        $sections = Section::orderBy('id','desc')->paginate(10);
+        $data = Data::with('section.title.category')->orderBy('id','desc')->get();
         return view('data', compact('sections','data'));
     }
 

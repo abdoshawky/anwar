@@ -422,6 +422,8 @@ Route::get('/', function(){
     return view('welcome');
 });
 
+Route::get('/test', 'HomeController@test');
+
 // comment
 Route::get('/categories',           'HomeController@showCategories');
 Route::post('/categories',          'HomeController@saveCategories');
