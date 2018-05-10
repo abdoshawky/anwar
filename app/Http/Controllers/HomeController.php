@@ -159,16 +159,14 @@ class HomeController extends Controller
                 'category_id'   => $item->section->title->category->id
             ];
 
-//
-
             $response[] = $test;
         };
         $data = json_encode($response);
         $path = public_path("json/data.json");
         $file = fopen($path, "w");
         fwrite($file, $data);
-        $sections = Section::orderBy('id','desc')->paginate(10);
-        $data = Data::with('section.title.category')->orderBy('id','desc')->get();
+        $sections = Section::orderBy('id','desc')->get();
+        $data = Data::with('section.title.category')->orderBy('id','desc')->paginate(10);
         return view('data', compact('sections','data'));
     }
 
