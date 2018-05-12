@@ -13,13 +13,14 @@ class CreateDataTable extends Migration
      */
     public function up()
     {
-//        Schema::create('data', function (Blueprint $table) {
-//            $table->increments('id');
-//            $table->integer('section_id')->unsigned();
-//            $table->text('key');
-//            $table->text('karat_message');
-//            $table->timestamps();
-//        });
+        Schema::create('data', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('section_id')->unsigned();
+            $table->foreign('section_id')->references('id')->on('sections')->onUpdate('cascade')->onDelete('cascade');
+            $table->text('key');
+            $table->text('karat_message');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -29,6 +30,6 @@ class CreateDataTable extends Migration
      */
     public function down()
     {
-//        Schema::dropIfExists('data');
+        Schema::dropIfExists('data');
     }
 }
