@@ -107,7 +107,9 @@
                     </tr>
                 @endforeach
                 </tbody>
+
             </table>
+            {!! $data->links() !!}
         </div>
     </div>
 @endsection

@@ -28,7 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('welcome');
     }
 
     public function test(){
@@ -54,7 +54,7 @@ class HomeController extends Controller
         $file = fopen($path, "w");
         fwrite($file, $data);
 
-        $categories = Category::orderBy('id','desc')->get();
+        $categories = Category::orderBy('id','desc')->paginate(10);
         return view('categories', compact('categories'));
     }
 
@@ -62,6 +62,14 @@ class HomeController extends Controller
         if($request->has('name')){
             Category::create(['name'=>$request->get('name')]);
             session()->put('success','Data stored successfully');
+        }
+        return redirect()->back();
+    }
+
+    public function updateCategory(Request $request, $id){
+        if($request->has('name')){
+            Category::find($id)->update(['name'=>$request->get('name')]);
+            session()->put('success','Data updated successfully');
         }
         return redirect()->back();
     }
@@ -84,7 +92,7 @@ class HomeController extends Controller
         $file = fopen($path, "w");
         fwrite($file, $data);
 
-        $titles = Title::with('category')->orderBy('id','desc')->get();
+        $titles = Title::with('category')->orderBy('id','desc')->paginate(10);
         return view('titles', compact('titles','categories'));
     }
 
@@ -93,6 +101,14 @@ class HomeController extends Controller
             Title::create(['name'=>$request->get('name'),'category_id'=>$request->get('category_id')]);
             session()->put('category_id',$request->get('category_id'));
             session()->put('success','Data stored successfully');
+        }
+        return redirect()->back();
+    }
+
+    public function updateTitle(Request $request, $id){
+        if($request->has('name') && $request->has('category_id')){
+            Title::find($id)->update(['name'=>$request->get('name'),'category_id'=>$request->get('category_id')]);
+            session()->put('success','Data updated successfully');
         }
         return redirect()->back();
     }
@@ -114,7 +130,7 @@ class HomeController extends Controller
         $file = fopen($path, "w");
         fwrite($file, $data);
         $titles = Title::orderBy('id','desc')->get();
-        $sections = Section::with('title.category')->orderBy('id','desc')->get();
+        $sections = Section::with('title.category')->orderBy('id','desc')->paginate(10);
         return view('sections', compact('sections','titles'));
     }
 
