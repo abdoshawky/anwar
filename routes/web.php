@@ -13,23 +13,23 @@
 
 Route::get('/', 'HomeController@index');
 
-Route::get('/categories',           'HomeController@showCategories');
-Route::post('/categories',          'HomeController@saveCategories');
-Route::put('/categories/{id}',      'HomeController@updateCategory');
-Route::delete('/categories/{id}',   'HomeController@deleteCategories');
+Route::get('/categories',           'CategoriesController@show');
+Route::post('/categories',          'CategoriesController@save');
+Route::put('/categories/{id}',      'CategoriesController@update');
+Route::delete('/categories/{id}',   'CategoriesController@delete');
 
-Route::get('/titles',           'HomeController@showTitles');
-Route::post('/titles',          'HomeController@saveTitles');
-Route::put('/titles/{id}',      'HomeController@updateTitle');
-Route::delete('/titles/{id}',   'HomeController@deleteTitles');
+Route::get('/titles',           'TitlesController@show');
+Route::post('/titles',          'TitlesController@save');
+Route::put('/titles/{id}',      'TitlesController@update');
+Route::delete('/titles/{id}',   'TitlesController@delete');
 
-Route::get('/sections',           'HomeController@showSections');
-Route::post('/sections',          'HomeController@saveSections');
-Route::delete('/sections/{id}',   'HomeController@deleteSections');
+Route::get('/sections',           'SectionsController@show');
+Route::post('/sections',          'SectionsController@save');
+Route::delete('/sections/{id}',   'SectionsController@delete');
 
-Route::get('/data',           'HomeController@showData');
-Route::post('/data',          'HomeController@saveData');
-Route::delete('/data/{id}',   'HomeController@deleteData');
+Route::get('/data',           'DataController@show');
+Route::post('/data',          'DataController@save');
+Route::delete('/data/{id}',   'DataController@delete');
 
 
 Auth::routes();
