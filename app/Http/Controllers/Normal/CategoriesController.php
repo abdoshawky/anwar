@@ -1,21 +1,23 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Normal;
 
 use Illuminate\Http\Request;
-use App\Category;
+use App\Http\Controllers\Controller;
+
+use App\Normal\Category;
 
 class CategoriesController extends Controller
 {
     public function show(){
-        $categories = \App\Category::all();
+        $categories = Category::all();
         $data = json_encode($categories);
-        $path = public_path('json/categoriesUpnormal.json');
-        $file = fopen($path, "w");
+        $path = public_path('json/categories.json');
+        $file = fopen($path, "w", 0777);
         fwrite($file, $data);
 
         $categories = Category::orderBy('id','desc')->paginate(10);
-        return view('categories', compact('categories'));
+        return view('normal.categories', compact('categories'));
     }
 
     public function save(Request $request){
@@ -42,5 +44,4 @@ class CategoriesController extends Controller
         }
         return redirect()->back();
     }
-
 }

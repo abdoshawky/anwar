@@ -6,12 +6,12 @@
             <div class="col-md-8">
                 <div class="card card-default">
                     <div class="card-header">
-                        Store title
-                        <a class="pull-left btn btn-sm" download href="{!! url('json/titles.json') !!}">Download</a>
+                        Store upnormal title
+                        <a class="pull-left btn btn-sm" download href="{!! url('json/titlesUpnormal.json') !!}">Download</a>
                     </div>
 
                     <div class="card-body">
-                        <form method="POST" action="{!! url('/titles') !!}">
+                        <form method="POST" action="{!! url('/titles/upnormal') !!}">
                             {!! csrf_field() !!}
 
                             <div class="form-group row">
@@ -78,7 +78,7 @@
                         <td>{!! $title->category->name !!}</td>
                         <td>{!! $title->name !!}</td>
                         <td>
-                            <form method="post" action="{!! url('titles/'.$title->id) !!}" style="display: inline-block;">
+                            <form method="post" action="{!! url('titles/'.$title->id.'/upnormal') !!}" style="display: inline-block;">
                                 {!! csrf_field() !!}
                                 {!! method_field('delete') !!}
                                 <input type="submit" value="Delete" class="btn btn-danger">
@@ -101,7 +101,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-body">
-                                <form method="POST" action="{!! url('/titles/'.$title->id) !!}">
+                                <form method="POST" action="{!! url('/titles/'.$title->id.'/upnormal') !!}">
                                     {!! csrf_field() !!}
                                     {!! method_field('PUT') !!}
 

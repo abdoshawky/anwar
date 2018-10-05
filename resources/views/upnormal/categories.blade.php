@@ -6,12 +6,12 @@
             <div class="col-md-8">
                 <div class="card card-default">
                     <div class="card-header">
-                        Store category
+                        Store upnormal category
                         <a class="pull-left btn btn-sm" download href="{!! url('json/categoriesUpnormal.json') !!}">Download</a>
                     </div>
 
                     <div class="card-body">
-                        <form method="POST" action="{!! url('/categories') !!}">
+                        <form method="POST" action="{!! url('/categories/upnormal') !!}">
                             {!! csrf_field() !!}
                             
 
@@ -58,7 +58,7 @@
                         <td>{!! $category->id !!}</td>
                         <td>{!! $category->name !!}</td>
                         <td>
-                            <form method="post" action="{!! url('categories/'.$category->id) !!}" style="display: inline-block">
+                            <form method="post" action="{!! url('categories/'.$category->id.'/upnormal') !!}" style="display: inline-block">
                                 {!! csrf_field() !!}
                                 {!! method_field('delete') !!}
                                 <input type="submit" value="Delete" class="btn btn-danger">
@@ -81,7 +81,7 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-body">
-                                    <form method="POST" action="{!! url('/categories/'.$category->id) !!}">
+                                    <form method="POST" action="{!! url('/categories/'.$category->id.'/upnormal') !!}">
                                         {!! csrf_field() !!}
                                         {!! method_field('put') !!}
 

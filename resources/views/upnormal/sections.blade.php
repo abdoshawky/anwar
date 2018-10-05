@@ -6,12 +6,12 @@
             <div class="col-md-8">
                 <div class="card card-default">
                     <div class="card-header">
-                        Store section
-                        <a class="pull-left btn btn-sm" download="download" href="{!! url('json/sections.json') !!}">Download</a>
+                        Store upnormal section
+                        <a class="pull-left btn btn-sm" download="download" href="{!! url('json/sectionsUpnormal.json') !!}">Download</a>
                     </div>
 
                     <div class="card-body">
-                        <form method="POST" action="{!! url('/sections') !!}">
+                        <form method="POST" action="{!! url('/sections/upnormal') !!}">
                             {!! csrf_field() !!}
 
                             <div class="form-group row">
@@ -94,7 +94,7 @@
                         <td>{!! $section->title->name !!}</td>
                         <td>{!! $section->name !!}</td>
                         <td>
-                            <form method="post" action="{!! url('sections/'.$section->id) !!}">
+                            <form method="post" action="{!! url('sections/'.$section->id.'/upnormal') !!}">
                                 {!! csrf_field() !!}
                                 {!! method_field('delete') !!}
                                 <input type="submit" value="Delete" class="btn btn-danger">

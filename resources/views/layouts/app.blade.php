@@ -25,19 +25,42 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
+                    
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        <li><a class="nav-link" href="{{ url('/categories') }}">Categories</a></li>
-                        <li><a class="nav-link" href="{{ url('/titles') }}">Titles</a></li>
-                        <li><a class="nav-link" href="{{ url('/sections') }}">Sections</a></li>
-                        <li><a class="nav-link" href="{{ url('/data') }}">Data</a></li>
+                        @if(auth()->check())
+                            <div class="dropdown">
+                              <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Normal
+                              </button>
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li><a class="nav-link" href="{{ url('/categories/normal') }}">Categories</a></li>
+                                <li><a class="nav-link" href="{{ url('/titles/normal') }}">Titles</a></li>
+                                <li><a class="nav-link" href="{{ url('/sections/normal') }}">Sections</a></li>
+                                <li><a class="nav-link" href="{{ url('/data/normal') }}">Data</a></li>
+                              </div>
+                            </div>
+
+                            <div class="dropdown" style="margin: 0 10px;">
+                              <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Up-Normal
+                              </button>
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li><a class="nav-link" href="{{ url('/categories/upnormal') }}">Categories</a></li>
+                                <li><a class="nav-link" href="{{ url('/titles/upnormal') }}">Titles</a></li>
+                                <li><a class="nav-link" href="{{ url('/sections/upnormal') }}">Sections</a></li>
+                                <li><a class="nav-link" href="{{ url('/data/upnormal') }}">Data</a></li>
+                              </div>
+                            </div>
+                            <!-- Authentication Links -->
+                            
+                            <li><a class="nav-link" href="{{ url('/password/change') }}">Change password</a></li>
+                            <li><a class="nav-link" href="{{ url('/logout') }}">Logout</a></li>
+                        @else
+                            <li><a class="nav-link" href="{{ url('/login') }}">Login</a></li>
+                        @endif
                     </ul>
+                    
                 </div>
             </div>
         </nav>
@@ -47,6 +70,13 @@
                 <div class="alert alert-success text-center">
                     {!! session()->get('success') !!}
                     {!! session()->forget(['success']) !!}
+                </div>
+            @endif
+
+            @if(session()->has('error'))
+                <div class="alert alert-danger text-center">
+                    {!! session()->get('error') !!}
+                    {!! session()->forget(['error']) !!}
                 </div>
             @endif
 

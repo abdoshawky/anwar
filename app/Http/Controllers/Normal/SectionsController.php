@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Normal;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use App\Category;
-use App\Title;
-use App\Section;
+use App\Normal\Category;
+use App\Normal\Title;
+use App\Normal\Section;
 
 class SectionsController extends Controller
 {
@@ -13,11 +14,11 @@ class SectionsController extends Controller
         $section = Section::select('id','name','title_id')->get();
         $data = json_encode($section);
         $path = public_path("json/sections.json");
-        $file = fopen($path, "w");
+        $file = fopen($path, "w", 0777);
         fwrite($file, $data);
         $titles = Title::orderBy('id','desc')->get();
         $sections = Section::with('title.category')->orderBy('id','desc')->paginate(10);
-        return view('sections', compact('sections','titles'));
+        return view('normal.sections', compact('sections','titles'));
     }
 
     public function save(Request $request){

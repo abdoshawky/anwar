@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\UpNormal;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use App\Category;
-use App\Title;
+use App\UpNormal\Category;
+use App\UpNormal\Title;
 
 
 class TitlesController extends Controller
@@ -14,12 +15,12 @@ class TitlesController extends Controller
         $categories = Category::all();
         $titles = Title::select('id','name','category_id')->get();
         $data = json_encode($titles);
-        $path = public_path("json/titles.json");
-        $file = fopen($path, "w");
+        $path = public_path("json/titlesUpnormal.json");
+        $file = fopen($path, "w", 0777);
         fwrite($file, $data);
 
         $titles = Title::with('category')->orderBy('id','desc')->paginate(10);
-        return view('titles', compact('titles','categories'));
+        return view('upnormal.titles', compact('titles','categories'));
     }
 
     public function save(Request $request){

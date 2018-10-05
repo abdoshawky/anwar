@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\UpNormal;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use App\Category;
-use App\Data;
-use App\Section;
-use App\Title;
+use App\UpNormal\Category;
+use App\UpNormal\Data;
+use App\UpNormal\Section;
+use App\UpNormal\Title;
 
 class DataController extends Controller
 {
@@ -27,12 +28,12 @@ class DataController extends Controller
             $response[] = $test;
         };
         $data = json_encode($response);
-        $path = public_path("json/data.json");
-        $file = fopen($path, "w");
+        $path = public_path("json/dataUpnormal.json");
+        $file = fopen($path, "w", 0777);
         fwrite($file, $data);
         $sections = Section::orderBy('id','desc')->get();
         $data = Data::with('section.title.category')->orderBy('id','desc')->paginate(10);
-        return view('data', compact('sections','data'));
+        return view('upnormal.data', compact('sections','data'));
     }
 
     public function save(Request $request){

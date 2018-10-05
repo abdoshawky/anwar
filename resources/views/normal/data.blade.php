@@ -6,12 +6,12 @@
             <div class="col-md-8">
                 <div class="card card-default">
                     <div class="card-header">
-                        Store data
+                        Store normal data
                         <a class="pull-left btn btn-sm" download href="{!! url('json/data.json') !!}">Download</a>
                     </div>
 
                     <div class="card-body">
-                        <form method="POST" action="{!! url('/data') !!}">
+                        <form method="POST" action="{!! url('/data/normal') !!}">
                             {!! csrf_field() !!}
 
                             <div class="form-group row">
@@ -98,7 +98,7 @@
                         <td>{!! $item->key !!}</td>
                         <td>{!! $item->karat_message !!}</td>
                         <td>
-                            <form method="post" action="{!! url('data/'.$item->id) !!}">
+                            <form method="post" action="{!! url('data/'.$item->id.'/normal') !!}">
                                 {!! csrf_field() !!}
                                 {!! method_field('delete') !!}
                                 <input type="submit" value="Delete" class="btn btn-danger">
